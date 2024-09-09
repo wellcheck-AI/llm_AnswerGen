@@ -33,6 +33,7 @@ python3 api_test.py
 1. 서치 코드 변경
 Deberta 모델을 제거하고, OpenAI API를 사용한 새로운 서치 로직으로 대체, 키워드 서치 & Rerank 기능 관련 제거, 추천 답변 생성 코드 수정
 2. 의존성
-Langchain 호출 경로를 최신 버전 업데이트, ChatOpenAI 파라미터 수정.
+Langchain 호출 경로를 최신 버전 업데이트, ChatOpenAI 파라미터 수정
+
 2024-09-09
-3. Openai API KEY 교체 
+1. Openai API KEY 교체 
