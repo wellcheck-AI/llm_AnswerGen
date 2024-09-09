@@ -223,22 +223,3 @@ python3 -m venv .venv
 source .venv/bin/activate
 pip install -r requirements.txt
 nohup python3 app.py > output.log 2>&1 &
-histoyr
-history
-git status
-git -version
-deactivate
-history
-ls
-cd release_20240906
-source env/bin/activate
-cd ..
-ls 
-ps aux | grep uvicorn
-ps aux | grep app.py
-ps aux | grep guicorn
-kill -9 45059
-ps aux | grep app.py
-kill -9 45068
-ps aux | grep app.py
-deactivate
