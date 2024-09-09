@@ -1,0 +1,8 @@
+{
+  "name": "Code",
+  "version": "1.93.0",
+  "private": true,
+  "resolutions": {
+    "node-gyp-build": "4.8.1"
+  }
+}

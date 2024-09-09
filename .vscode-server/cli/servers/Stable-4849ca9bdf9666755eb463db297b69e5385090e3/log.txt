@@ -1,0 +1,38 @@
+*
+* Visual Studio Code Server
+*
+* By using the software, you agree to
+* the Visual Studio Code Server License Terms (https://aka.ms/vscode-server-license) and
+* the Microsoft Privacy Statement (https://privacy.microsoft.com/en-US/privacystatement).
+*
+Server bound to /tmp/code-2f2d9b67-16f0-47a1-b750-efd4b700f559
+Extension host agent listening on /tmp/code-2f2d9b67-16f0-47a1-b750-efd4b700f559
+
+[00:17:15] 
+
+
+
+
+[00:17:15] Extension host agent started.
+[00:17:16] [<unknown>][cd46fe2c][ManagementConnection] New connection established.
+[00:17:16] [<unknown>][4f5ed61d][ExtensionHostConnection] New connection established.
+[00:17:16] [<unknown>][4f5ed61d][ExtensionHostConnection] <126835> Launched Extension Host Process.
+[00:20:03] [<unknown>][cd46fe2c][ManagementConnection] The client has disconnected gracefully, so the connection will be disposed.
+[00:20:03] [<unknown>][4f5ed61d][ExtensionHostConnection] <126835> Extension Host Process exited with code: 0, signal: null.
+Cancelling previous shutdown timeout
+[00:20:03] Cancelling previous shutdown timeout
+Last EH closed, waiting before shutting down
+[00:20:03] Last EH closed, waiting before shutting down
+[00:20:15] [<unknown>][b99c5ced][ManagementConnection] New connection established.
+[00:20:15] [<unknown>][eae81bd5][ExtensionHostConnection] New connection established.
+[00:20:15] [<unknown>][eae81bd5][ExtensionHostConnection] <127444> Launched Extension Host Process.
+[00:20:15] [<unknown>][b99c5ced][ManagementConnection] The client has disconnected gracefully, so the connection will be disposed.
+[00:20:15] Error: disposed
+    at c.k (/home/ubuntu/.vscode-server/cli/servers/Stable-4849ca9bdf9666755eb463db297b69e5385090e3/server/out/vs/server/node/server.main.js:113:19892)
+    at Object.call (/home/ubuntu/.vscode-server/cli/servers/Stable-4849ca9bdf9666755eb463db297b69e5385090e3/server/out/vs/server/node/server.main.js:113:19779)
+    at /home/ubuntu/.vscode-server/cli/servers/Stable-4849ca9bdf9666755eb463db297b69e5385090e3/server/out/vs/server/node/server.main.js:113:4456
+    at runNextTicks (node:internal/process/task_queues:60:5)
+    at listOnTimeout (node:internal/timers:540:9)
+    at process.processTimers (node:internal/timers:514:7)
+    at async Proxy.<anonymous> (/home/ubuntu/.vscode-server/cli/servers/Stable-4849ca9bdf9666755eb463db297b69e5385090e3/server/out/vs/server/node/server.main.js:113:5864)
+    at async D.watch (/home/ubuntu/.vscode-server/cli/servers/Stable-4849ca9bdf9666755eb463db297b69e5385090e3/server/out/vs/server/node/server.main.js:122:106385)

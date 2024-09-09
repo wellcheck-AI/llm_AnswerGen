@@ -1,0 +1,72 @@
+*
+* Visual Studio Code Server
+*
+* By using the software, you agree to
+* the Visual Studio Code Server License Terms (https://aka.ms/vscode-server-license) and
+* the Microsoft Privacy Statement (https://privacy.microsoft.com/en-US/privacystatement).
+*
+Server bound to /tmp/code-f71c2590-d865-418b-b2c8-4bfedba67300
+Extension host agent listening on /tmp/code-f71c2590-d865-418b-b2c8-4bfedba67300
+
+[06:20:30] 
+
+
+
+
+[06:20:30] Extension host agent started.
+[06:20:30] Started initializing default profile extensions in extensions installation folder. file:///home/ubuntu/.vscode-server/extensions
+[06:20:30] Completed initializing default profile extensions in extensions installation folder. file:///home/ubuntu/.vscode-server/extensions
+[06:20:30] [<unknown>][6f437224][ManagementConnection] New connection established.
+[06:20:30] [<unknown>][980b375d][ExtensionHostConnection] New connection established.
+[06:20:30] [<unknown>][980b375d][ExtensionHostConnection] <1641> Launched Extension Host Process.
+[06:20:30] Installing extensions...
+[06:20:31] Installing extension 'ms-ceintl.vscode-language-pack-ko'...
+[06:20:31] Getting Manifest... ms-ceintl.vscode-language-pack-ko
+[06:20:31] Installing extension: ms-ceintl.vscode-language-pack-ko {
+  isMachineScoped: true,
+  isBuiltin: false,
+  installPreReleaseVersion: undefined,
+  installGivenVersion: false,
+  isApplicationScoped: true,
+  installOnlyNewlyAddedFromExtensionPack: true,
+  profileLocation: b {
+    scheme: 'file',
+    authority: '',
+    path: '/home/ubuntu/.vscode-server/extensions/extensions.json',
+    query: '',
+    fragment: '',
+    _formatted: 'file:///home/ubuntu/.vscode-server/extensions/extensions.json',
+    _fsPath: '/home/ubuntu/.vscode-server/extensions/extensions.json'
+  },
+  productVersion: { version: '1.91.1', date: '2024-07-09T22:08:48.553Z' }
+}
+[06:20:33] Extension signature verification result for ms-ceintl.vscode-language-pack-ko: Success. Executed: true. Duration: 1376ms.
+[06:20:33] Extracted extension to file:///home/ubuntu/.vscode-server/extensions/ms-ceintl.vscode-language-pack-ko-1.91.2024071009: ms-ceintl.vscode-language-pack-ko
+[06:20:33] Renamed to /home/ubuntu/.vscode-server/extensions/ms-ceintl.vscode-language-pack-ko-1.91.2024071009
+[06:20:33] Adding language packs from the extension ms-ceintl.vscode-language-pack-ko
+[06:20:33] Extension installed successfully: ms-ceintl.vscode-language-pack-ko file:///home/ubuntu/.vscode-server/extensions/extensions.json
+[06:20:33] Extension 'ms-ceintl.vscode-language-pack-ko' v1.91.2024071009 was successfully installed.
+[06:20:36] Getting Manifest... ms-ceintl.vscode-language-pack-ko
+[06:20:36] Installing extension: ms-ceintl.vscode-language-pack-ko {
+  productVersion: { version: '1.92.2', date: '1970-01-01T00:00:00.000Z' },
+  pinned: false,
+  isApplicationScoped: true,
+  context: { clientTargetPlatform: 'darwin-arm64' },
+  installOnlyNewlyAddedFromExtensionPack: true,
+  profileLocation: b {
+    scheme: 'file',
+    authority: '',
+    path: '/home/ubuntu/.vscode-server/extensions/extensions.json',
+    query: '',
+    fragment: '',
+    _formatted: 'file:///home/ubuntu/.vscode-server/extensions/extensions.json',
+    _fsPath: '/home/ubuntu/.vscode-server/extensions/extensions.json'
+  }
+}
+[06:20:37] Extension signature verification result for ms-ceintl.vscode-language-pack-ko: Success. Executed: true. Duration: 916ms.
+[06:20:37] Extracted extension to file:///home/ubuntu/.vscode-server/extensions/ms-ceintl.vscode-language-pack-ko-1.92.2024081409: ms-ceintl.vscode-language-pack-ko
+[06:20:37] Renamed to /home/ubuntu/.vscode-server/extensions/ms-ceintl.vscode-language-pack-ko-1.92.2024081409
+[06:20:37] Marked extension as uninstalled ms-ceintl.vscode-language-pack-ko-1.91.2024071009
+[06:20:37] Adding language packs from the extension ms-ceintl.vscode-language-pack-ko
+[06:20:37] Extension installed successfully: ms-ceintl.vscode-language-pack-ko file:///home/ubuntu/.vscode-server/extensions/extensions.json
+[06:21:34] [<unknown>][6f437224][ManagementConnection] The client has disconnected, will wait for reconnection 3h before disposing...

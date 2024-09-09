@@ -1,0 +1,35 @@
+*
+* Visual Studio Code Server
+*
+* By using the software, you agree to
+* the Visual Studio Code Server License Terms (https://aka.ms/vscode-server-license) and
+* the Microsoft Privacy Statement (https://privacy.microsoft.com/en-US/privacystatement).
+*
+Server bound to /tmp/code-e551e780-4b40-4957-a1a8-dc7413130c48
+Extension host agent listening on /tmp/code-e551e780-4b40-4957-a1a8-dc7413130c48
+
+[00:27:52] 
+
+
+
+
+[00:27:52] Extension host agent started.
+[00:27:52] [<unknown>][effcd096][ExtensionHostConnection] New connection established.
+[00:27:52] [<unknown>][88764f7a][ManagementConnection] New connection established.
+Generating translation files failed. Error: ENOENT: no such file or directory, open '/home/ubuntu/.vscode-server/cli/servers/Stable-fee1edb8d6d72a0ddff41e5f71a671c23ed924b9/server/out/nls.keys.json'
+    at async open (node:internal/fs/promises:636:25)
+    at async Object.readFile (node:internal/fs/promises:1246:14)
+    at async o (/home/ubuntu/.vscode-server/cli/servers/Stable-fee1edb8d6d72a0ddff41e5f71a671c23ed924b9/server/out/vs/server/node/server.main.js:101:3836)
+    at async g (/home/ubuntu/.vscode-server/cli/servers/Stable-fee1edb8d6d72a0ddff41e5f71a671c23ed924b9/server/out/vs/server/node/server.main.js:182:71094)
+    at async i.start (/home/ubuntu/.vscode-server/cli/servers/Stable-fee1edb8d6d72a0ddff41e5f71a671c23ed924b9/server/out/vs/server/node/server.main.js:182:73906) {
+  errno: -2,
+  code: 'ENOENT',
+  syscall: 'open',
+  path: '/home/ubuntu/.vscode-server/cli/servers/Stable-fee1edb8d6d72a0ddff41e5f71a671c23ed924b9/server/out/nls.keys.json'
+}
+[00:27:52] [<unknown>][effcd096][ExtensionHostConnection] <128695> Launched Extension Host Process.
+[00:27:57] [<unknown>][88764f7a][ManagementConnection] The client has disconnected gracefully, so the connection will be disposed.
+[00:27:57] [<unknown>][187de46e][ManagementConnection] New connection established.
+[00:27:57] [<unknown>][5ad731ca][ExtensionHostConnection] New connection established.
+[00:27:57] [<unknown>][5ad731ca][ExtensionHostConnection] <128762> Launched Extension Host Process.
+[00:30:11] [<unknown>][187de46e][ManagementConnection] The client has disconnected gracefully, so the connection will be disposed.
