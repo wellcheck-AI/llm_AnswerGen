@@ -11,6 +11,8 @@
 .lesshst
 .sudo_as_admin_successful
 .wget-hsts
+.vscode-server
+.profile
 
 ### Flask ###
 instance/*
