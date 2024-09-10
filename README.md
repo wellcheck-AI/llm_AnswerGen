@@ -199,4 +199,24 @@ Deberta 모델을 제거하고, OpenAI API를 사용한 새로운 서치 로직�
 Langchain 호출 경로를 최신 버전 업데이트, ChatOpenAI 파라미터 수정
 
 2024-09-09
-1. Openai API KEY 교체 
+1. 잘못된 가상환경 제거 및 신규 생성
+2. Openai API KEY 교체 
+
+2024-10-10
+1. 로깅 설정 추가
+1) /etc/profile 줄 추가
+export PROMPT_COMMAND='RETRN_VAL=$?; logger -t bash -p local1.notice "$(whoami) [$(date +%Y-%m-%d\ %H:%M:%S)] $(history 1 | sed "s/^[ ]*[0-9]\+[ ]*//" )"'
+2) /etc/rsyslog.d/50-default.conf 줄 추가
+local1.notice    /var/log/cmd.log
+3) rsyslog 재시작 : sudo systemctl restart rsyslog
+
+2. 메일링 설정
+1) /home/ubuntu/send_ssh_log.sh 생성
+2) crontab -e 줄 추가 : * * * * * /home/ubutu/send_ssh_log.sh
+3) 외부 stmp 서버 설정 (hostname -f : ip-172-31-50-136.ap-northeast-2.compute.internal)
+4) /etc/postfix/main.cf 변경 : relayhost설정, TLS 설정 추가
+5) /etc/postfix/sasl_passwd : 계정정보 추가 후 적용
+sudo vim /etc/postfix/main.cf
+sudo postmap /etc/postfix/sasl_passwd
+sudo systemctl restart postfix
+6) 테스트 : echo "Test email content" | mail -s "Test Subject" test@test.com
