@@ -220,3 +220,5 @@ sudo vim /etc/postfix/main.cf
 sudo postmap /etc/postfix/sasl_passwd
 sudo systemctl restart postfix
 6) 테스트 : echo "Test email content" | mail -s "Test Subject" test@test.com
+tail -f /var/log/auth.log
+tail -f /var/log/mail.log
