@@ -13,8 +13,8 @@
 .wget-hsts
 .vscode-server
 .profile
-.viminfo
-.selected_editor
+*.viminfo
+*.selected_editor
 
 ### Flask ###
 instance/*
