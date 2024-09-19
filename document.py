@@ -80,9 +80,9 @@ class Document_:
                     answer = []
                 r = [reference_id, keywords, answer]
 
-            else:
+            # else:
                 # 유사도가 0.25 미만일 경우 빈 키워드와 답변 처리
-                r = [reference_id, [], []]
-            ref_list.append(r)
+                # r = [reference_id, [], []]
+                ref_list.append(r)
 
         return ref_list
