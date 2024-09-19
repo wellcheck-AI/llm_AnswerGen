@@ -10,7 +10,6 @@ from langchain.prompts import (
     MessagesPlaceholder
 )
 
-# .env 파일 로드
 load_dotenv()
 
 class Chatbot_:

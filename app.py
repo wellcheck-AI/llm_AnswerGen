@@ -134,7 +134,6 @@ class Reference(Resource):
 
         return jsonify(response)
 
-# Answer 리소스 클래스 정의
 @ns_answer.route('/')
 class Answer(Resource):
     @api.expect(answer_model)
@@ -145,7 +144,6 @@ class Answer(Resource):
         try:
             json_data = request.json
             query = json_data['query']
-            # index_list = json_data['data'][0]['index']
             reference_list = json_data['data'][0]['reference']
 
             context = document.context_to_string(reference_list, query)
