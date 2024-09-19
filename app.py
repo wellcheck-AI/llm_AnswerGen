@@ -1,9 +1,13 @@
 #!d/usr/bin/python3 -u
+import os
+import openai
 import json
 from dotenv import load_dotenv
 from flask_cors import CORS
 from flask import Flask, jsonify, request
 from flask_restx import Api, Resource, fields
+from langchain.chains.conversation.memory import ConversationBufferWindowMemory
+
 
 from document import Document_
 from chat import Chatbot_
@@ -45,60 +49,75 @@ document = Document_()
 class Summary(Resource):
     @api.expect(summary_model)
     @api.response(200, 'Success')
-    @api.response(400, 'ValueError')
-    @api.response(500, 'Error')
+    @api.response(403, 'Remote API server error')
+    @api.response(405, 'Query is required')
+    @api.response(500, 'Internal Server Error')
     def post(self):
         try:
             data = request.json
             query = data['query']
 
-            try:
-                summary = llm.summary(query)
-            except:
-                raise ValueError("OpenAI 호출 실패")
+            if not query.strip():
+                return jsonify({
+                    "success": "false",
+                    "error_code": 405,
+                    "message": "쿼리를 입력해주세요."
+                })
 
-            response = {
+            summary = llm.summary(query)
+
+            return jsonify({
                 "success": "true",
                 "data": [
                     {
                         "summary": summary,
                     }
                 ]
-            }
+            })
 
-        except ValueError as e:
-            response = {
+        except openai.APIError as e:
+            return jsonify({
                 "success": "false",
-                "error_code": 400,
+                "error_code": 403,
                 "message": "현재 AI 질문 요약이 어렵습니다. 잠시 후에 다시 사용해주세요."
-            }
-
+            })
         except Exception as e:
-            response = {
+            print(e)
+            return jsonify({
                 "success": "false",
                 "error_code": 500,
                 "message": "현재 AI 질문 요약이 어렵습니다. 잠시 후에 다시 사용해주세요."
-            }
-
-        return jsonify(response)
+            })
 
 @ns_reference.route('/')
 class Reference(Resource):
     @api.expect(reference_model)
     @api.response(200, 'Success')
-    @api.response(400, 'ValueError')
-    @api.response(500, 'Error')
+    @api.response(204, 'No relevant guide available')
+    @api.response(403, 'Remote API server error')
+    @api.response(405, 'Query is required')
+    @api.response(500, 'Internal Server Error')
     def post(self):
         try:
             data = request.json
             query = data['query']
 
-            try:
-                query_refine = document.query_refine(query)
-                context = document.find_match(query_refine)
+            if not query.strip():
+                return jsonify({
+                    "success": "false",
+                    "error_code": 405,
+                    "message": "쿼리를 입력해주세요."
+                })
+            
+            query_refine = document.query_refine(query)
+            context = document.find_match(query_refine)
 
-            except:
-                raise ValueError("OpenAI 호출 실패")
+            if not context:
+                return jsonify({
+                    "success": "true",
+                    "status_code": 204,
+                    "data": []
+                })
 
             reference = {"reference": []} 
 
@@ -109,83 +128,79 @@ class Reference(Resource):
                     "text": c[2][0],
                 })
 
-            response = {
+            return jsonify({
                 "success": "true",
                 "data": [
                     reference
                 ]
-            }
+            })
 
-        except ValueError as e:
-            response = {
+        except openai.APIError as e:
+            return jsonify({
                 "success": "false",
-                "error_code": 400,
-                "message": "현재 AI 질문 요약이 어렵습니다. 잠시 후에 다시 사용해주세요."
-            }
-            response = json.dumps(response, ensure_ascii=False)
+                "error_code": 403,
+                "message": "현재 AI 답변 가이드 검색이 어렵습니다. 잠시 후에 다시 사용해주세요."
+            })
 
         except Exception as e:
-            response = {
+            return jsonify({
                 "success": "false",
                 "error_code": 500,
-                "message": "현재 AI 질문 요약이 어렵습니다. 잠시 후에 다시 사용해주세요."
-            }
-            response = json.dumps(response, ensure_ascii=False)
+                "message": "현재 AI 답변 가이드 검색이 어렵습니다. 잠시 후에 다시 사용해주세요."
+            })
 
-        return jsonify(response)
-
+# Answer 리소스 클래스 정의
 @ns_answer.route('/')
 class Answer(Resource):
     @api.expect(answer_model)
     @api.response(200, 'Success')
-    @api.response(400, 'ValueError')
-    @api.response(500, 'Error')
+    @api.response(403, 'Remote API server error')
+    @api.response(405, 'Query is required')
+    @api.response(500, 'Internal Server Error')
     def post(self):
         try:
             json_data = request.json
             query = json_data['query']
             reference_list = json_data['data'][0]['reference']
 
+            if not query.strip():
+                return jsonify({
+                    "success": "false",
+                    "error_code": 405,
+                    "message": "쿼리를 입력해주세요."
+                })
+            
             context = document.context_to_string(reference_list, query)
 
-            try:
-                if context:
-                    reference=context
-                else:
-                    reference=['참고문서는 없으니 확실한 정보 기반으로 대답해줘.']
-                answer = "(자동화 답변)" + llm.getConversation_prompttemplate(query=query, reference=reference)
-                
-            except:
-                raise ValueError("OpenAI 호출 실패")
+            if context:
+                reference=context
+            else:
+                reference=['참고문서는 없으니 너가 아는 정보로 대답해줘.']
+            answer = llm.getConversation_prompttemplate(query=query, reference=reference)
 
-            response = {
+            return jsonify({
                 "success": "true",
                 "data": [
                     {
                         "answer": answer
                     }
                 ]
-            }
-            print(response)
+            })
 
-        except ValueError as e:
-            response = {
+        except openai.APIError as e:
+            return jsonify({
                 "success": "false",
-                "error_code": 400,
-                "message": "현재 AI 질문 요약이 어렵습니다. 잠시 후에 다시 사용해주세요."
-            }
-            response = json.dumps(response, ensure_ascii=False)
+                "error_code": 403,
+                "message": "현재 AI 답변 추천이 어렵습니다. 잠시 후에 다시 사용해주세요."
+            })
 
         except Exception as e:
-            response = {
+            return jsonify({
                 "success": "false",
                 "error_code": 500,
-                "message": "현재 AI 질문 요약이 어렵습니다. 잠시 후에 다시 사용해주세요."
-            }
-            response = json.dumps(response, ensure_ascii=False)
+                "message": "현재 AI 답변 추천이 어렵습니다. 잠시 후에 다시 사용해주세요."
+            })
 
-        return jsonify(response)
 
 if __name__ == '__main__':
     app.run(host='0.0.0.0', port=5000, debug=True)
-
