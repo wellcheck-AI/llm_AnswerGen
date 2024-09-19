@@ -8,7 +8,7 @@ Langchain과 LLM(openai API)로 연관 가이드를 연결하고, 이를 통해 
 * LLM 기반 답변 생성: LLM 및 Langchain을 사용하여 답변을 생성하고 추천합니다.
 
 ## API 명세
-**요약 API (Summary API)Request**:
+### 요약 API (Summary API)Request
 
 ```
 { "query" : "혈당이란 무엇인가요?" }
@@ -31,13 +31,24 @@ Langchain과 LLM(openai API)로 연관 가이드를 연결하고, 이를 통해 
 
 ```
 
-- `실패 - OpenAI 호출 실패 (400):`
+- `실패 - OpenAI 호출 실패 (403):`
 
 ```
 {
-    "success": false,
-    "error_code": 400,
+    "success": "false",
+    "error_code": 403,
     "message": "현재 AI 질문 요약이 어렵습니다. 잠시 후에 다시 사용해 주세요."
+}
+
+```
+
+- `실패 - 빈 쿼리 입력 (405):`
+
+```
+{
+    "success": "false",
+    "error_code": 405,
+    "message": "쿼리를 입력해주세요."
 }
 
 ```
@@ -46,14 +57,14 @@ Langchain과 LLM(openai API)로 연관 가이드를 연결하고, 이를 통해 
 
 ```
 {
-    "success": false,
+    "success": "false",
     "error_code": 500,
     "message": "현재 AI 질문 요약이 어렵습니다. 잠시 후에 다시 사용해 주세요."
 }
 
 ```
 
-**답변 가이드 검색 API (Reference API)Request**:
+### 답변 가이드 검색 API (Reference API)Request
 
 ```
 {"query" : "혈당이란 무엇인가요?"}
@@ -94,13 +105,35 @@ Langchain과 LLM(openai API)로 연관 가이드를 연결하고, 이를 통해 
 
 ```
 
-- `실패 - OpenAI 호출 실패 (400):`
+- `성공 (204):`
+```
+{
+
+    "success": "true",
+    "status_code": 204,
+    "data": []
+}
+
+```
+
+- `실패 - OpenAI 호출 실패 (403):`
 
 ```
 {
-    "success": false,
-    "error_code": 400,
+    "success": "false",
+    "error_code": 403,
     "message": "현재 AI 답변 가이드 검색이 어렵습니다. 잠시 후에 다시 사용해 주세요."
+}
+
+```
+
+- `실패 - 빈 쿼리 입력 (405):`
+
+```
+{
+    "success": "false",
+    "error_code": 405,
+    "message": "쿼리를 입력해주세요."
 }
 
 ```
@@ -116,7 +149,7 @@ Langchain과 LLM(openai API)로 연관 가이드를 연결하고, 이를 통해 
 
 ```
 
-**답변 추천 API (Answer API)Request**:
+### 답변 추천 API (Answer API)Request
 
 ```
 {
@@ -137,7 +170,7 @@ Langchain과 LLM(openai API)로 연관 가이드를 연결하고, 이를 통해 
 
 ```
 {
-    "success": true,
+    "success": "true",
     "data": [
         {
             "answers": "혈당은 혈액 속에 포함된 포도당의 농도를 의미합니다. 식사 후 혈당이 급격히 상승하면 식곤증을 유발할 수 있습니다."
@@ -147,13 +180,24 @@ Langchain과 LLM(openai API)로 연관 가이드를 연결하고, 이를 통해 
 
 ```
 
-- `실패 - OpenAI 호출 실패 (400):`
+- `실패 - OpenAI 호출 실패 (403):`
 
 ```
 {
-    "success": false,
-    "error_code": 400,
+    "success": "false",
+    "error_code": 403,
     "message": "현재 AI 답변 추천이 어렵습니다. 잠시 후에 다시 사용해 주세요."
+}
+
+```
+
+- `실패 - 빈 쿼리 입력 (405):`
+
+```
+{
+    "success": "false",
+    "error_code": 405,
+    "message": "쿼리를 입력해주세요."
 }
 
 ```
@@ -222,3 +266,6 @@ sudo systemctl restart postfix
 6) 테스트 : echo "Test email content" | mail -s "Test Subject" test@test.com
 tail -f /var/log/auth.log
 tail -f /var/log/mail.log
+
+2024-09-19
+1. Status Code 업데이트
