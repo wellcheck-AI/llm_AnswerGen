@@ -115,8 +115,8 @@ class Reference(Resource):
             if not context:
                 return jsonify({
                     "success": "true",
-                    "error_code": 204,
-                    "message": "관련된 가이드 답변 문서가 존재하지 않습니다."
+                    "status_code": 204,
+                    "data": []
                 })
 
             reference = {"reference": []} 
@@ -139,14 +139,14 @@ class Reference(Resource):
             return jsonify({
                 "success": "false",
                 "error_code": 403,
-                "message": "현재 AI 검색이 어렵습니다. 잠시 후에 다시 사용해주세요."
+                "message": "현재 AI 답변 가이드 검색이 어렵습니다. 잠시 후에 다시 사용해주세요."
             })
 
         except Exception as e:
             return jsonify({
                 "success": "false",
                 "error_code": 500,
-                "message": "현재 AI 검색이 어렵습니다. 잠시 후에 다시 사용해주세요."
+                "message": "현재 AI 답변 가이드 검색이 어렵습니다. 잠시 후에 다시 사용해주세요."
             })
 
 # Answer 리소스 클래스 정의
@@ -191,14 +191,14 @@ class Answer(Resource):
             return jsonify({
                 "success": "false",
                 "error_code": 403,
-                "message": "현재 AI 검색이 어렵습니다. 잠시 후에 다시 사용해주세요."
+                "message": "현재 AI 답변 추천이 어렵습니다. 잠시 후에 다시 사용해주세요."
             })
 
         except Exception as e:
             return jsonify({
                 "success": "false",
                 "error_code": 500,
-                "message": "현재 AI 검색이 어렵습니다. 잠시 후에 다시 사용해주세요."
+                "message": "현재 AI 답변 추천이 어렵습니다. 잠시 후에 다시 사용해주세요."
             })
 
 
