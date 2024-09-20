@@ -112,7 +112,7 @@ class Reference(Resource):
             query_refine = document.query_refine(query)
             context = document.find_match(query_refine)
 
-            if not context:
+            if not all(list(zip(*context))[0]):
                 return jsonify({
                     "success": "true",
                     "status_code": 204,

@@ -61,8 +61,10 @@ class Document_:
                     answer = []
                 r = [reference_id, keywords, answer]
 
-            # else:
+            else:
+                reference_id = None
                 r = [reference_id, [], []]
                 ref_list.append(r)
 
         return ref_list
+    
