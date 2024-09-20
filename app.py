@@ -8,9 +8,9 @@ from flask import Flask, jsonify, request
 from flask_restx import Api, Resource, fields
 from langchain.chains.conversation.memory import ConversationBufferWindowMemory
 
-
-from document import Document_
 from chat import Chatbot_
+from document import Document_
+from exceptions import PineconeAPIKeyError, PineconeIndexNameError, PineconeUnexceptedException
 
 # .env 파일 로드
 load_dotenv()
@@ -81,6 +81,7 @@ class Summary(Resource):
                 "error_code": 403,
                 "message": "현재 AI 질문 요약이 어렵습니다. 잠시 후에 다시 사용해주세요."
             })
+        
         except Exception as e:
             print(e)
             return jsonify({
@@ -140,6 +141,27 @@ class Reference(Resource):
                 "success": "false",
                 "error_code": 403,
                 "message": "현재 AI 답변 가이드 검색이 어렵습니다. 잠시 후에 다시 사용해주세요."
+            })
+        
+        except PineconeAPIKeyError as e:
+            return jsonify({
+                "success": "false",
+                "error_code": 403,
+                "message": "현재 AI 질문 요약이 어렵습니다. 잠시 후에 다시 사용해주세요."
+            })
+        
+        except PineconeIndexNameError as e:
+            return jsonify({
+                "success": "false",
+                "error_code": 403,
+                "message": "현재 AI 질문 요약이 어렵습니다. 잠시 후에 다시 사용해주세요."
+            })
+        
+        except PineconeUnexceptedException as e:
+            return jsonify({
+                "success": "false",
+                "error_code": 500,
+                "message": "현재 AI 질문 요약이 어렵습니다. 잠시 후에 다시 사용해주세요."
             })
 
         except Exception as e:
