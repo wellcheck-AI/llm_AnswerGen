@@ -1,6 +1,7 @@
 #!d/usr/bin/python3 -u
 import os
 import openai
+import pinecone
 import json
 from dotenv import load_dotenv
 from flask_cors import CORS
@@ -10,7 +11,7 @@ from langchain.chains.conversation.memory import ConversationBufferWindowMemory
 
 from chat import Chatbot_
 from document import Document_
-from exceptions import PineconeAPIKeyError, PineconeIndexNameError, PineconeUnexceptedException
+from exceptions import PineconeIndexNameError, PineconeUnexceptedException
 
 # .env 파일 로드
 load_dotenv()
@@ -143,7 +144,7 @@ class Reference(Resource):
                 "message": "현재 AI 답변 가이드 검색이 어렵습니다. 잠시 후에 다시 사용해주세요."
             })
         
-        except PineconeAPIKeyError as e:
+        except pinecone.exceptions.PineconeApiException as e:
             return jsonify({
                 "success": "false",
                 "error_code": 403,
