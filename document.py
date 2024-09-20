@@ -60,11 +60,11 @@ class Document_:
                     keywords = []
                     answer = []
                 r = [reference_id, keywords, answer]
-                ref_list.append(r)
 
             else:
                 reference_id = None
                 r = [reference_id, [], []]
-                ref_list.append(r)
+                
+            ref_list.append(r)
 
         return ref_list
