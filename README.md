@@ -34,7 +34,7 @@ Langchain과 LLM(openai API)로 연관 가이드를 연결하고, 이를 통해 
 - 요약 API
     ```json
     {
-        "success": "true",
+        "status_code": 200,
         "data": [
             {
                 "summary": "허리 사이즈 감량 목표 달성을 위한 미션 방법"
@@ -46,7 +46,7 @@ Langchain과 LLM(openai API)로 연관 가이드를 연결하고, 이를 통해 
     - 204에서 data는 `[[None, [], []], [None, [], []], ...]`의 형태
     ```json
     {
-        "success": "true",
+        "status_code": 200,
         "data": [
             {
                 "reference" : [
@@ -64,7 +64,7 @@ Langchain과 LLM(openai API)로 연관 가이드를 연결하고, 이를 통해 
 - 답변 추천 API
     ```json
     {
-        "success": "true",
+        "status_code": 200,
         "data": [
             {
                 "index": [1, 2, 3],
@@ -77,8 +77,7 @@ Langchain과 LLM(openai API)로 연관 가이드를 연결하고, 이를 통해 
 #### 실패
 ```json
 {
-    "success": "false",
-    "error_code": <STATUS_CODE>,
+    "status_code": <STATUS_CODE>,
     "message": "현재 <PROCESS_NAME>이 어렵습니다. 잠시 후에 다시 사용해주세요."
 }
 
