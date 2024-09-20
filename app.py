@@ -60,15 +60,14 @@ class Summary(Resource):
 
             if not query.strip():
                 return jsonify({
-                    "success": "false",
-                    "error_code": 405,
+                    "status_code": 405,
                     "message": "쿼리를 입력해주세요."
                 })
 
             summary = llm.summary(query)
 
             return jsonify({
-                "success": "true",
+                "status_code": 200,
                 "data": [
                     {
                         "summary": summary,
@@ -78,16 +77,14 @@ class Summary(Resource):
 
         except openai.APIError as e:
             return jsonify({
-                "success": "false",
-                "error_code": 403,
+                "status_code": 403,
                 "message": "현재 AI 질문 요약이 어렵습니다. 잠시 후에 다시 사용해주세요."
             })
         
         except Exception as e:
             print(e)
             return jsonify({
-                "success": "false",
-                "error_code": 500,
+                "status_code": 500,
                 "message": "현재 AI 질문 요약이 어렵습니다. 잠시 후에 다시 사용해주세요."
             })
 
@@ -106,8 +103,7 @@ class Reference(Resource):
 
             if not query.strip():
                 return jsonify({
-                    "success": "false",
-                    "error_code": 405,
+                    "status_code": 405,
                     "message": "쿼리를 입력해주세요."
                 })
             
@@ -116,7 +112,6 @@ class Reference(Resource):
 
             if not all(list(zip(*context))[0]):
                 return jsonify({
-                    "success": "true",
                     "status_code": 204,
                     "data": []
                 })
@@ -131,7 +126,7 @@ class Reference(Resource):
                 })
 
             return jsonify({
-                "success": "true",
+                "status_code": 200,
                 "data": [
                     reference
                 ]
@@ -139,36 +134,31 @@ class Reference(Resource):
 
         except openai.APIError as e:
             return jsonify({
-                "success": "false",
-                "error_code": 403,
+                "status_code": 403,
                 "message": "현재 AI 답변 가이드 검색이 어렵습니다. 잠시 후에 다시 사용해주세요."
             })
         
         except pinecone.exceptions.PineconeApiException as e:
             return jsonify({
-                "success": "false",
-                "error_code": 403,
+                "status_code": 403,
                 "message": "현재 AI 질문 요약이 어렵습니다. 잠시 후에 다시 사용해주세요."
             })
         
         except PineconeIndexNameError as e:
             return jsonify({
-                "success": "false",
-                "error_code": 403,
+                "status_code": 403,
                 "message": "현재 AI 질문 요약이 어렵습니다. 잠시 후에 다시 사용해주세요."
             })
         
         except PineconeUnexceptedException as e:
             return jsonify({
-                "success": "false",
-                "error_code": 500,
+                "status_code": 500,
                 "message": "현재 AI 질문 요약이 어렵습니다. 잠시 후에 다시 사용해주세요."
             })
 
         except Exception as e:
             return jsonify({
-                "success": "false",
-                "error_code": 500,
+                "status_code": 500,
                 "message": "현재 AI 답변 가이드 검색이 어렵습니다. 잠시 후에 다시 사용해주세요."
             })
 
@@ -188,8 +178,7 @@ class Answer(Resource):
 
             if not query.strip():
                 return jsonify({
-                    "success": "false",
-                    "error_code": 405,
+                    "status_code": 405,
                     "message": "쿼리를 입력해주세요."
                 })
             
@@ -202,7 +191,7 @@ class Answer(Resource):
             answer = llm.getConversation_prompttemplate(query=query, reference=reference)
 
             return jsonify({
-                "success": "true",
+                "status_code": 200,
                 "data": [
                     {
                         "answer": answer
@@ -212,15 +201,13 @@ class Answer(Resource):
 
         except openai.APIError as e:
             return jsonify({
-                "success": "false",
-                "error_code": 403,
+                "status_code": 403,
                 "message": "현재 AI 답변 추천이 어렵습니다. 잠시 후에 다시 사용해주세요."
             })
 
         except Exception as e:
             return jsonify({
-                "success": "false",
-                "error_code": 500,
+                "status_code": 500,
                 "message": "현재 AI 답변 추천이 어렵습니다. 잠시 후에 다시 사용해주세요."
             })
 
