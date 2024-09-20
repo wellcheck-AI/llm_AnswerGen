@@ -5,10 +5,11 @@ from pinecone import Pinecone
 from langchain_openai import OpenAIEmbeddings
 from langchain.chains.conversation.memory import ConversationBufferWindowMemory
 
+from database import PineconeCursor
+
 load_dotenv()
 
-pc = Pinecone(api_key=os.getenv('PINECONE_API_KEY'))
-index = pc.Index('wellda-test')
+index = PineconeCursor(api_key=os.getenv('PINECONE_API_KEY'), index_name='wellda-test')
 
 embedding_model = OpenAIEmbeddings(
     model="text-embedding-3-large",  
@@ -61,8 +62,10 @@ class Document_:
                     answer = []
                 r = [reference_id, keywords, answer]
 
-            # else:
+            else:
+                reference_id = None
                 r = [reference_id, [], []]
-                ref_list.append(r)
+
+            ref_list.append(r)
 
         return ref_list
