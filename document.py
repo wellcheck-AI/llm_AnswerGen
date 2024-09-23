@@ -9,7 +9,7 @@ from database import PineconeCursor
 
 load_dotenv()
 
-index = PineconeCursor(api_key=os.getenv('PINECONE_API_KEY'), index_name='wellda-test')
+index = PineconeCursor(api_key=os.getenv('PINECONE_API_KEY'), index_name='prod-answergen')
 
 embedding_model = OpenAIEmbeddings(
     model="text-embedding-3-large",  
