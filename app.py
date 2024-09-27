@@ -1,13 +1,10 @@
 #!d/usr/bin/python3 -u
-import os
 import openai
 import pinecone
-import json
 from dotenv import load_dotenv
 from flask_cors import CORS
 from flask import Flask, jsonify, request
 from flask_restx import Api, Resource, fields
-from langchain.chains.conversation.memory import ConversationBufferWindowMemory
 
 from chat import Chatbot_
 from document import Document_
@@ -119,9 +116,12 @@ class Reference(Resource):
             reference = {"reference": []} 
 
             for i, c in enumerate(context, start=1):
+                # keyword 리스트의 각 항목에 \n 추가
+                keywords_with_newline = [k + '\n' for k in c[1]] 
+                # reference 리스트에 추가
                 reference["reference"].append({
                     "index": c[0],
-                    "keyword": c[1],
+                    "keyword": keywords_with_newline,  # \n이 추가된 리스트를 사용하여 플랫폼 내부에 정렬되게 진행
                     "text": c[2][0],
                 })
 
