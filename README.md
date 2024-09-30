@@ -100,11 +100,6 @@ nohup python3 app.py > output.log 2>&1 &
 ps aux | grep app.py
 ```
 
-테스트코드 실행
-```
-python3 api_test.py
-```
-
 ## 변경사항
 2024-09-06
 1. 서치 코드 변경
