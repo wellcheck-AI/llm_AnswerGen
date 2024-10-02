@@ -71,19 +71,30 @@ class Document_:
         embed_query = self._sentence_embedding(query=query)
         sparse_vector = self._tfidf_sparse_vector(query=query)
 
-        result = index.query(
-            vector=embed_query,
-            sparse_vector=sparse_vector,
-            top_k=10, 
-            include_metadata=True
-        )
+        if sparse_vector["indices"]:
+            result = index.query(
+                vector=embed_query,
+                sparse_vector=sparse_vector,
+                top_k=10, 
+                include_metadata=True
+            )
+
+            threshold = 0.25
+        else:
+            result = index.query(
+                vector=embed_query,
+                top_k=10, 
+                include_metadata=True
+            )
+
+            threshold = 0.4
 
         result.matches.sort(key=lambda x: x.score, reverse=True)
 
         ref_list = []
         for res in result.matches:
             r = []
-            if res.score >= 0.25:
+            if res.score >= threshold:
                 reference_id = res['id']
 
                 keywords = res["metadata"]["keywords"]

@@ -110,6 +110,8 @@ class Reference(Resource):
             
             context = document.find_match(query)
 
+            print(context)
+
             if not all(list(zip(*context))[0]):
                 return jsonify({
                     "status_code": 204,
@@ -133,7 +135,6 @@ class Reference(Resource):
             })
 
         except openai.APIError as e:
-            print(e)
             return jsonify({
                 "status_code": 403,
                 "message": "현재 AI 답변 가이드 검색이 어렵습니다. 잠시 후에 다시 사용해주세요."
@@ -148,7 +149,7 @@ class Reference(Resource):
         except PineconeIndexNameError as e:
             return jsonify({
                 "status_code": 403,
-                "message": "현재 AI 질문 요약이 어렵습니다. 잠시 후에 다시 사용해주세요."
+                "message": "현재 AI 답변 가이드 검색이 어렵습니다. 잠시 후에 다시 사용해주세요."
             })
         
         except PineconeUnexceptedException as e:
