@@ -117,11 +117,11 @@ class Reference(Resource):
                 })
 
             reference = {"reference": []} 
-
             for c in context:
+                keywords_with_newline = [k + '\n' for k in c[1]] 
                 reference["reference"].append({
                     "index": c[0],
-                    "keyword": c[1],
+                    "keyword": keywords_with_newline,  
                     "text": c[2],
                 })
 
