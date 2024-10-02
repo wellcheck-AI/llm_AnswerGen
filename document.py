@@ -1,10 +1,7 @@
 import os
 from dotenv import load_dotenv
 from utils import query_refiner
-from pinecone import Pinecone
 from langchain_openai import OpenAIEmbeddings
-from langchain.chains.conversation.memory import ConversationBufferWindowMemory
-
 from database import PineconeCursor
 
 load_dotenv()
@@ -69,3 +66,4 @@ class Document_:
             ref_list.append(r)
 
         return ref_list
+
