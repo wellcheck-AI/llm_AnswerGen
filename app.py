@@ -110,8 +110,6 @@ class Reference(Resource):
             
             context = document.find_match(query)
 
-            print(context)
-
             if not all(list(zip(*context))[0]):
                 return jsonify({
                     "status_code": 204,
