@@ -113,7 +113,11 @@ class Reference(Resource):
             if not all(list(zip(*context))[0]):
                 return jsonify({
                     "status_code": 204,
-                    "data": []
+                    "data": [
+                        {
+                            "reference": []
+                        }
+                    ]
                 })
 
             reference = {"reference": []} 
