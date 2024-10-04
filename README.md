@@ -131,3 +131,5 @@ sudo systemctl restart postfix
 6) 테스트 : echo "Test email content" | mail -s "Test Subject" test@test.com
 tail -n /var/log/auth.log
 tail -f /var/log/mail.log
+
+## jenkins 안내
