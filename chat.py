@@ -1,5 +1,6 @@
 # -*- coding: utf-8 -*-
 import os
+import re
 from dotenv import load_dotenv
 from openai import OpenAI as summaryai
 from langchain_openai import ChatOpenAI
@@ -87,6 +88,8 @@ class Chatbot_:
         )
 
         summary = chat_completion.choices[0].message.content
+        if "- 요지:" in summary:
+            summary = re.sub("- 요지:", "", summary).strip()
         return summary
     
     def summary_add_guid(self, query):
