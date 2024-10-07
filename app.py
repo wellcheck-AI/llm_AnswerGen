@@ -157,10 +157,11 @@ class Reference(Resource):
         except PineconeUnexceptedException as e:
             return jsonify({
                 "status_code": 500,
-                "message": "현재 AI 질문 요약이 어렵습니다. 잠시 후에 다시 사용해주세요."
+                "message": "현재 AI 답변 가이드 검색이 어렵습니다. 잠시 후에 다시 사용해주세요."
             })
 
         except Exception as e:
+            
             return jsonify({
                 "status_code": 500,
                 "message": f"현재 AI 답변 가이드 검색이 어렵습니다. 잠시 후에 다시 사용해주세요.",
