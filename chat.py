@@ -88,8 +88,7 @@ class Chatbot_:
         )
 
         summary = chat_completion.choices[0].message.content
-        if "- 요지:" in summary:
-            summary = re.sub("- 요지:", "", summary).strip()
+        summary = re.sub("-\ ?요(약|지)\ ?:", "", summary).strip()
         return summary
     
     def summary_add_guid(self, query):
