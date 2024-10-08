@@ -88,7 +88,6 @@ class Chatbot_:
         )
 
         summary = chat_completion.choices[0].message.content
-        print(summary)
         summary = re.sub("-?\ ?요(약|지)\ ?:", "", summary).strip()
         return summary
     
