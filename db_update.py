@@ -17,7 +17,6 @@ load_dotenv()
 with open(os.path.join(os.path.dirname(__file__), "config", 'conf.yaml')) as f:
     config = yaml.full_load(f)
 
-INDEX_NAMES = ["prod-search-sroberta-a", "prod-search-sroberta-b"]
 index_name = config["pinecone"]["index_name"]
 
 def tfidf_sparse_vector(query:str, vectorizer:Literal["TfidfVectorizer"]) -> Tuple[List[int], List[float]]:

@@ -15,6 +15,9 @@
 .profile
 .viminfo
 .selected_editor
+*backup*
+data/
+test.xlsx
 
 ### Flask ###
 instance/*
